@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-'''Script that lists all states from the database hbtn_0e_0_usa
-with a name starting with N'''
+"""Script that lists all states from the database hbtn_0e_0_usa
+with a name starting with N"""
 
 import MySQLdb
 import sys
@@ -28,7 +28,7 @@ if __name__ == '__main__':
         '''Create a cursor object'''
         cur = db.cursor()
 
-        """Execute the query to grab states with names starting with 'N'"""
+        '''Execute the query to grab states with names starting with N'''
         cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id")
 
         '''Fetch all the rows'''
