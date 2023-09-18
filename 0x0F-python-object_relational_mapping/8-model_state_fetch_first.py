@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Script that retrieves and prints the first State object from the database hbtn_0e_6_usa"""
+"""Script that retrieves and prints the first State object from database """
 
 import sys
 from model_state import Base, State

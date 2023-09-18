@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Script that adds a new State object to the database hbtn_0e_6_usa and retrieves its ID"""
+"""Script that adds a new State object to the database 
+hbtn_0e_6_usa and retrieves its ID"""
 
 import sys
 from model_state import Base, State
