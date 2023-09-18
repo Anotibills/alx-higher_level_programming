@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Script that updates name of a State object in database hbtn_0e_6_usa"""
+"""Script that updates the name of a State object in the database hbtn_0e_6_usa"""
 
 import sys
 from model_state import Base, State

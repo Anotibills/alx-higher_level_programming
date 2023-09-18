@@ -26,8 +26,7 @@ if __name__ == '__main__':
 
     try:
         # Query State objects where the name contains 'a'
-        states_with_a = session.query(State).filter
-        (State.name.like('%a%')).order_by(State.id).all()
+        states_with_a = session.query(State).filter(State.name.like('%a%')).order_by(State.id).all()
 
         for state in states_with_a:
             print('{}: {}'.format(state.id, state.name))

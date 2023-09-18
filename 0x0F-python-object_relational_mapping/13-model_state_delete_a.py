@@ -32,8 +32,7 @@ if __name__ == '__main__':
         '''
         Query State objects with names containing 'a'
         '''
-        states_with_a = session.query(State).filter
-        (State.name.like('%a%')).all()
+        states_with_a = session.query(State).filter(State.name.like('%a%')).all()
         '''
         Delete the matching State objects
         '''
