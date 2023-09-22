@@ -12,8 +12,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     '''Get command-line arguments'''
-    username, password, database, state_name = sys.argv[1], sys.argv[2],
-    sys.argv[3], sys.argv[4]
+    username, password, database, state_name = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
 
     try:
         '''Connect to the database'''
