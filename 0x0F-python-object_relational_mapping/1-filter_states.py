@@ -29,13 +29,7 @@ if __name__ == '__main__':
         cur = db.cursor()
 
         '''Execute the query to grab states with names starting with N'''
-        query = """
-            SELECT *
-            FROM states
-            WHERE name LIKE BINARY %s
-            ORDER BY column_name
-        """
-        cur.execute(query, ('N%',))
+        cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id")
 
         '''Fetch all the rows'''
         query_rows = cur.fetchall()
