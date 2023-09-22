@@ -9,6 +9,7 @@ from sqlalchemy.ext.declarative import declarative_base
 # Create a declarative base
 Base = declarative_base()
 
+
 class State(Base):
     '''
     Class definition of a state.
