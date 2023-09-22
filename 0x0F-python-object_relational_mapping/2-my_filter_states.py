@@ -6,9 +6,7 @@ import MySQLdb
 import sys
 
 if __name__ == '__main__':
-    '''
-    Check if the correct number of command-line arguments is provided
-    '''
+    '''Check if the correct number of command-line arguments is provided'''
     if len(sys.argv) != 5:
         print("Usage: {} <username> <password> <database> <state_name>"
               .format(sys.argv[0]))
@@ -33,9 +31,8 @@ if __name__ == '__main__':
         cur = db.cursor()
 
         '''Execute the query to grab states with the specified name'''
-        query = ("SELECT * FROM states WHERE name = BINARY %s ORDER BY id"
-                 % state_name)
-        cur.execute(query)
+        query = ("SELECT * FROM states WHERE name = BINARY %s ORDER BY id")
+        cur.execute(query, (state_name,))
 
         '''Fetch all the rows'''
         query_rows = cur.fetchall()
