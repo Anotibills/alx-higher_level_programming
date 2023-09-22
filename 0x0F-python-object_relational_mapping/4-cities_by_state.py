@@ -22,12 +22,13 @@ if __name__ == '__main__':
             db=database,
             charset="utf8"
             )
-        
+
         '''Create a cursor object'''
         cur = db.cursor()
         '''Execute query to grab all cities'''
         cur.execute("SELECT cities.id, cities.name, states.name FROM cities "
-                    "JOIN states ON cities.state_id = states.id ORDER BY cities.id ASC")
+                    "JOIN states ON cities.state_id = states.id "
+                    "ORDER BY cities.id ASC")
 
         query_rows = cur.fetchall()
 
