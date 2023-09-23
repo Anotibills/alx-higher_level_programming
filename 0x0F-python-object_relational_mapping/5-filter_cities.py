@@ -1,42 +1,41 @@
 #!/usr/bin/python3
-"""script that lists all cities in a specific state from the database hbtn_0e_0_usa"""
+"""
+Script that lists all cities from the database
+"""
 
 import MySQLdb
 import sys
 
-if __name__ == "__main__":
-    '''
-    Check if the correct number of command-line arguments is provided
-    '''
-    if len(sys.argv) != 5:
-        print("Usage: {} <username> <password> <database> <state_name>".format(sys.argv[0]))
-        sys.exit(1)
-
-    # Get command-line arguments
-    username, password, database, state_name = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
-
+if __name__ == '__main__':
     '''
     Create a database connection
     '''
-    db = MySQLdb.connect(host="localhost", user=username, passwd=password, db=database, port=3306)
+    db = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3]
+    )
+
+    '''Create a cursor'''
     cur = db.cursor()
 
-    try:
-        '''
-        Query and print the names of cities in the specified state
-        '''
-        cur.execute("""SELECT cities.name FROM
-                    cities INNER JOIN states ON states.id=cities.state_id
-                    WHERE states.name=%s""", (state_name,))
-        rows = cur.fetchall()
-        city_names = [row[0] for row in rows]
-        print(", ".join(city_names))
+    '''Execute the SQL query to retrieve city names'''
+    cur.execute("SELECT cities.name FROM cities\
+                 JOIN states ON cities.state_id = states.id\
+                 WHERE states.name = %s ORDER BY cities.id",
+                (sys.argv[4],))
 
-    except Exception as e:
-        print("Error: {}".format(e))
-        sys.exit(1)
+    '''Fetch all the rows'''
+    rows = cur.fetchall()
 
-    finally:
-        # Close the cursor and database connection
-        cur.close()
-        db.close()
+    '''Extract city names into a list'''
+    city_names = [row[0] for row in rows]
+
+    '''Join city names with ", " separator'''
+    result = ", ".join(city_names)
+    Print the result
+    print(result)
+    cur.close()
+    db.close()
