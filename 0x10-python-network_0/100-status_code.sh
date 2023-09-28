@@ -1,4 +1,3 @@
 #!/bin/bash
-# The script that sends a request to a URL passed as an argument,
-curl -Is "$1" | awk 'NR==1{print $2}'
-
+# The script that sends a request to a URL passed as an argument
+(curl -Is "$1" | grep -i "^HTTP" | awk '{print $2}' && exit) || exit 1
