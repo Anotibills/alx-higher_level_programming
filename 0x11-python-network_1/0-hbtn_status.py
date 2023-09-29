@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
-script that fetches url
-"""
+Script that fetches url"""
 import urllib.request
 
 '''Define the URL to fetch'''
@@ -11,12 +10,18 @@ try:
     '''Use 'urllib.request.urlopen' to make an HTTP GET request to the URL'''
     with urllib.request.urlopen(url) as response:
         html = response.read()
-        
+
         '''Print the response information with tabulation'''
         print("Body response:")
         print("\t- type:", type(html))
-        print("\t- content:", html.decode('utf-8'))
-except Exception as e:
-    # Handle exceptions, if any
-    print(e)
 
+        try:
+            '''Attempt to decode the content using UTF-8'''
+            content = html.decode('utf-8')
+            print("\t- content:", content)
+        except UnicodeDecodeError:
+            print("\t- content: Unable to decode as UTF-8")
+
+except Exception as e:
+    '''Handle exceptions, if any'''
+    print(e)
