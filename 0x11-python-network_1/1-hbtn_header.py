@@ -1,30 +1,31 @@
 #!/usr/bin/python3
 """
-This script takes a URL, sends a request to the URL, and displays the value
+This script retrieves and print the X-Requested-Id
 """
 import urllib.request
+import sys
 
 
-def fetch_and_display_x_request_id(url):
+def get_x_request_id(url):
     try:
-        """
-        Use 'urllib' to make an HTTP GET request to the provided URL
-        """
+        '''Send a request to the provided URL.'''
         with urllib.request.urlopen(url) as response:
-            # Retrieve the headers from the response
-            headers = response.info()
-
-            # Search for the 'X-Request-Id' header and print its value
-            x_request_id = headers.get("X-Request-Id")
+            x_request_id = response.getheader("X-Request-Id")
             if x_request_id:
                 print(x_request_id)
             else:
-                print("X-Request-Id not found in response headers.")
-
+                print("X-Request-Id header not found in the response.")
     except urllib.error.URLError as e:
         print("Error:", e)
 
 
 if __name__ == "__main__":
-    url = "https://alx-intranet.hbtn.io"
-    fetch_and_display_x_request_id(url)
+    if len(sys.argv) != 2:
+        '''
+        Check if the correct number of command-line arguments is provided.
+        '''
+        print("Usage: ./1-hbtn_header.py <URL>")
+        sys.exit(1)
+
+    url = sys.argv[1]
+    get_x_request_id(url)
