@@ -2,7 +2,7 @@
 
 const request = require('request');
 
-let url = process.argv[2];
+const url = process.argv[2];
 let count = 0;
 
 request(url, function (error, response, body) {
@@ -21,4 +21,3 @@ request(url, function (error, response, body) {
     console.error(error);
   }
 });
-

@@ -12,7 +12,7 @@ request(url, function (error, response, body) {
   }
 });
 
-function printCharacters(characters, idx) {
+function printCharacters (characters, idx) {
   if (idx >= characters.length) {
     return;
   }
